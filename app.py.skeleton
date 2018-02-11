@@ -1,0 +1,220 @@
+# filename: sonnette.py
+"""Sonnette social network back-end"""
+
+import hug, sqlite3, json, os, re
+from datetime import datetime
+DIRECTORY = os.path.dirname(os.path.realpath(__file__))
+
+# Prepare database requests
+conn = sqlite3.connect("data.db")
+conn.row_factory = sqlite3.Row #enable column access by name: row['column_name']
+db = conn.cursor()
+#conn.close() #called when script ends (I guess...)
+
+##############
+# Static pages
+
+@hug.static("/public")
+def staticDirs():
+    """Returns static directory names to be served"""
+    return ("public/",)
+
+#############################
+# HTML main page (1-page app)
+
+@hug.get("/", output=hug.output_format.html)
+def app():
+    """Main page, lazily loading all required informations from here"""
+    with open(os.path.join(DIRECTORY, "index.html")) as document:
+        return document.read()
+
+#########################
+# API: get,post,update...
+
+def parseData(body):
+    """Turn a dictionary into a convenient tuple of question marks, fields & values"""
+    tupleFields = tuple(list(body.keys()))
+    fields = str(tupleFields) if len(tupleFields) > 1 else "(" + str(tupleFields[0]) + ")"
+    qmarks = ("?," * len(body))[:-1] #values placeholders
+    values = tuple(list(body.values()))
+    return fields, qmarks, values
+
+@hug.post("/users")
+def create_user(body):
+    fields, qmarks, values = parseData(body)
+    cursor = db.execute(""" some request ... """)
+    conn.commit()
+    return json.dumps({ "id": cursor.lastrowid })
+
+@hug.get("/users/{id}")
+def get_user(id: int):
+    row = db.execute(""" some request """).fetchone()
+    conn.commit()
+    return json.dumps(dict(row if row else { }))
+
+@hug.put("/users/{id}")
+def update_user(id: int, body):
+    fields, qmarks, values = parseData(body)
+    db.execute(""" update request... """)
+    conn.commit()
+
+@hug.get("/users")
+def get_users():
+    rows = db.execute("SELECT * FROM users").fetchall()
+    conn.commit()
+    return json.dumps( [dict(ix) for ix in rows] )
+
+@hug.get("/posts")
+def get_posts(view: int, type: str):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/posts/{id}")
+def get_post(id: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.put("/posts/{id}")
+def update_post(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/posts/{id}")
+def delete_post(id: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/posts")
+def create_post(body):
+    return json.dumps({"unimplemented": True})
+
+# Return "none", "confirmed", "requested" or "unanswered"
+@hug.get("/friend_status")
+def get_friend_status(login: int, view: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/friends/{id}")
+def get_friends(id: int):
+    # NOTE: set additional (varchar) field 'friendship_lvl', equal to
+    # 'confirmed', 'requested' or 'unanswered', respectively if friendship is bilateral,
+    # request sent by user 'id', or request yet unanswered by user 'id'
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/friends")
+def new_friendship_line(source: int, target: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/friends")
+def delete_friend(source: int, target: int):
+    return json.dumps({"unimplemented": True})
+
+# Return True if some followed people did something (post somewhere, create group,
+# create event) since our last notifications check ('looknews' field)
+@hug.get("/something_new/{id}")
+def check_news(id: int):
+    """Check if something happened in followed people timeline since last check"""
+    return json.dumps({"unimplemented": True})
+
+# Return a list of all actions by followed people, since 'looknews'
+@hug.get("/notifications/{id}")
+def get_news(id: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/groups")
+def create_group(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/events")
+def create_event(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/groups/{id}")
+def get_group(id: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/groups")
+def get_groups():
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/events/{id}")
+def get_event(id: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/events")
+def get_events():
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/groups/{id}")
+def get_event(id: int):
+    """Delete a group and its posts"""
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/events/{id}")
+def get_event(id: int):
+    """Delete an event and its posts"""
+    return json.dumps({"unimplemented": True})
+
+@hug.put("/groups/{id}")
+def update_group(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.put("/events/{id}")
+def update_event(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/involved")
+def is_involved(user: int, event: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/belong_to")
+def belong_to(user: int, grp: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/involved")
+def sign_in(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/belong_to")
+def join_grp(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/participate")
+def sign_out(user: int, event: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/belong_to")
+def quit_grp(user: int, grp: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/conversations/{id}")
+def get_conversations(id: int):
+    """Find all summaries of exchanges with all people"""
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/messages")
+def get_messages(user1: int, user2: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/messages")
+def delete_messages(user1: int, user2: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/messages")
+def create_message(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/messages/{id}")
+def delete_message():
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/follow_status")
+def get_follow_status(login: int, view: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.post("/follow")
+def create_follow(body):
+    return json.dumps({"unimplemented": True})
+
+@hug.delete("/follow")
+def delete_follow(follower: int, target: int):
+    return json.dumps({"unimplemented": True})
+
+@hug.get("/comments/{id}")
+def get_comments(id: int):
+    return json.dumps({"unimplemented": True})

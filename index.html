@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8"/>
+	<title>sonnette social network</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="icon" type="image/png" href="/public/favicon.png"/>
+	<link rel="stylesheet" href="/public/stylesheets/app.css"/>
+
+</head>
+
+<body>
+
+	<div id="vueManage">
+		<header>
+			<ul id="menuLeft" class="side-nav fixed">
+				<li id="menuHead"><div class="user-view">
+					<div class="background"></div>
+					<div class="user-info valign-wrapper">
+						<img class="circle" :src="avatar"/>
+						<span class="white-text">{{ name }}</span>
+					</div>
+				</div></li>
+				<li><a :href="getHref('notifications')" :class="{blue:somethingNew}"><i class="material-icons">notifications</i>Notifications</a></li>
+				<li><a :href="getHref('profile')"><i class="material-icons">dvr</i>Profile</a></li>
+				<li><a :href="getHref('mail')"><i class="material-icons">mail</i>Messages</a></li>
+				<li><div class="divider"></div></li>
+				<li><a :href="getHref('discover')"><i class="material-icons">visibility</i>Discover</a></li>
+			</ul>
+			<nav>
+				<div class="nav-wrapper">
+					<a @click.prevent href="#" class="brand-logo center"><img class="sq64px" src="/public/images/logo.jpg"/></a>
+					<ul id="nav-mobile" class="left hide-on-large-only">
+						<li><a id="menuBtn" href="#" data-activates="menuLeft" class="button-collapse"><i class="material-icons">menu</i></a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<my-notifications v-if="section=='notifications'" :login="login" :view="view"></my-notifications>
+			<my-profile v-else-if="section=='profile'" :login="login" :view="view"></my-profile>
+			<my-discover v-else-if="section=='discover'" :login="login" :view="view"></my-discover>
+			<my-mail v-else-if="section=='mail'" :login="login" :view="view"></my-mail>
+			<my-group v-else-if="section=='group'" :login="login" :view="view"></my-group>
+			<my-event v-else-if="section=='event'" :login="login" :view="view"></my-event>
+			<my-post v-else-if="section=='post'" :login="login" :view="view"></my-event>
+			<my-messages v-else-if="section=='messages'" :login="login" :view="view"></my-event>
+		</main>
+	</div>
+
+	<footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">Sonnette Social Network</h5>
+					<p class="grey-text text-lighten-4">Built with &#9829; by you @ ENSTA IN206</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.js"></script>
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="/public/javascripts/components/notifications.js"></script>
+	<script src="/public/javascripts/components/profile.js"></script>
+	<script src="/public/javascripts/components/discover.js"></script>
+	<script src="/public/javascripts/components/basic_infos.js"></script>
+	<script src="/public/javascripts/components/people.js"></script>
+	<script src="/public/javascripts/components/group_list.js"></script>
+	<script src="/public/javascripts/components/event_list.js"></script>
+	<script src="/public/javascripts/components/wall.js"></script>
+	<script src="/public/javascripts/components/group.js"></script>
+	<script src="/public/javascripts/components/event.js"></script>
+	<script src="/public/javascripts/components/post_list.js"></script>
+	<script src="/public/javascripts/components/post.js"></script>
+	<script src="/public/javascripts/app.js"></script>

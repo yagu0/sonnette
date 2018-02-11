@@ -1,0 +1,3 @@
+1) Install hug: https://github.com/timothycrosley/hug
+2) Setup database: just run .sql script after "sqlite3 data.db"
+3) Run: hug -f app.py (fingers crossed...)

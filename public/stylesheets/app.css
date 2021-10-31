@@ -1,94 +1,94 @@
 body {
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 #vueManage {
-	flex: 1 0 auto;
+  flex: 1 0 auto;
 }
 
 header, main, footer {
-	padding-left: 300px;
+  padding-left: 300px;
 }
 
 @media only screen and (max-width : 992px) {
-	header, main, footer {
-		padding-left: 0;
-	}
+  header, main, footer {
+    padding-left: 0;
+  }
 }
 
 .bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .sq64px {
-	width: 64px;
-	height: 64px;
+  width: 64px;
+  height: 64px;
 }
 
 .smaller {
-	font-size: 0.7em;
+  font-size: 0.7em;
 }
 
 img.avatar {
-	width: 200px;
-	height: 200px;
-	border: 1px solid grey;
+  width: 200px;
+  height: 200px;
+  border: 1px solid grey;
 }
 
 .half {
-	float: left;
-	width: 50%;
+  float: left;
+  width: 50%;
 }
 
 .topspacing {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 .background {
-	background: linear-gradient(90deg, black, darkgrey);
+  background: linear-gradient(90deg, black, darkgrey);
 }
 
 li#menuHead div.user-view {
-	padding: 0 32px;
+  padding: 0 32px;
 }
 
 li#menuHead div.user-view div.user-info {
-	padding: 30px 0;
+  padding: 30px 0;
 }
 
 li#menuHead div.user-view img {
-	display: inline-block;
+  display: inline-block;
 }
 
 li#menuHead div.user-view i {
-	color: white;
+  color: white;
 }
 
 li#menuHead div.user-info span {
-	padding-left: 24px;
-	font-size: 24px;
+  padding-left: 24px;
+  font-size: 24px;
 }
 
 li#menuHead a {
-	display: flex;
+  display: flex;
 }
 
 li#menuHead i {
-	line-height: 48px;
-	margin-right: 32px;
+  line-height: 48px;
+  margin-right: 32px;
 }
 
 a#menuBtn {
-	display: inline-block;
-	margin: 0;
+  display: inline-block;
+  margin: 0;
 }
 
 a#menuBtn > i {
-	font-size: 32px;
+  font-size: 32px;
 }
 
 .pad-left {
-	padding-left: 10px;
+  padding-left: 10px;
 }

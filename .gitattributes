@@ -3,3 +3,4 @@
 *.tar.xz filter=fat
 *.png filter=fat
 *.jpg filter=fat
+*.ico filter=fat

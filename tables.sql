@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS messages (
 	FOREIGN KEY (receiver) REFERENCES users(id),
 	FOREIGN KEY (sender) REFERENCES users(id)
 );
-CREATE TABLE IF NOT EXISTS Posts (
+CREATE TABLE IF NOT EXISTS posts (
 	id INTEGER,
 	content TEXT NOT NULL,
 	created DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS Posts (
 	PRIMARY KEY (id),
 	FOREIGN KEY (author) REFERENCES users(id)
 );
-CREATE TABLE IF NOT EXISTS like (
+CREATE TABLE IF NOT EXISTS likes (
 	user INTEGER,
 	post INTEGER,
 	timestamp DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
@@ -87,4 +87,11 @@ CREATE TABLE IF NOT EXISTS belong_to (
 	PRIMARY KEY (grp,user),
 	FOREIGN KEY (grp) REFERENCES groups(id),
 	FOREIGN KEY (user) REFERENCES users(id)
+);
+-- TODO: next table was forgotten...
+CREATE TABLE IF NOT EXISTS timelines (
+  timestamp DATETIME NOT NULL DEFAULT (datetime('now','localtime')),
+  user INTEGER,
+  thing TEXT,
+  FOREIGN KEY (user) REFERENCES users(id)
 );

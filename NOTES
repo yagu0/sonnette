@@ -1,13 +1,13 @@
-Toy social network: not OK for prod
+Toy social network: not OK for prod (and clumsily written: I discovered Vue.js not long before)
 (But if you add an authentication method, some privacy settings + sanitization it might be usable)
 
-I prefer the concept of decentralized social network: see https://framasphere.org/ (using diaspora)
+I prefer the concept of decentralized social network: see https://diasporafoundation.org/
 
-Question to ask: what happen if a profile is deleted? Easy fix? And a group? ... (CASCADE)
+Question to ask: what happens if a profile is deleted? Easy fix? And a group? ... (CASCADE)
 
 misc TODOs:
  - Styling...
  - Notifications, messages
  - Unify things creation / edition to permit it from anywhere
  - Show potential affinities everywhere (people you may know, groups of friends ...)
- - sort by degrees of separation + show path, in "discover" page [hard]
+ - sort by degrees of separation + show path, in "discover" page [seems hard]

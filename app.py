@@ -77,7 +77,7 @@ def get_posts(view: int, type: str):
     rows = db.execute("""
         SELECT *
         FROM posts
-        WHERE reference = ? AND type = ?""", (view,type)).fetchall()
+        WHERE reference = ? AND reftype = ?""", (view,type)).fetchall()
     conn.commit()
     return json.dumps( [dict(ix) for ix in rows] )
 

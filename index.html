@@ -45,11 +45,11 @@
 			<my-notifications v-if="section=='notifications'" :login="login" :view="view"></my-notifications>
 			<my-profile v-else-if="section=='profile'" :login="login" :view="view"></my-profile>
 			<my-discover v-else-if="section=='discover'" :login="login" :view="view"></my-discover>
-			<my-mail v-else-if="section=='mail'" :login="login" :view="view"></my-mail>
-			<my-group v-else-if="section=='group'" :login="login" :view="view"></my-group>
+      <my-mail v-else-if="section=='mail'" :login="login" :view="view"></my-mail>
+      <my-group v-else-if="section=='group'" :login="login" :view="view"></my-group>
 			<my-event v-else-if="section=='event'" :login="login" :view="view"></my-event>
-			<my-post v-else-if="section=='post'" :login="login" :view="view"></my-event>
-			<my-messages v-else-if="section=='messages'" :login="login" :view="view"></my-event>
+			<my-post v-else-if="section=='post'" :login="login" :view="view"></my-post>
+			<my-messages v-else-if="section=='messages'" :login="login" :view="view"></my-message>
 		</main>
 	</div>
 
@@ -66,7 +66,7 @@
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.js"></script>
-	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 	<script src="/public/javascripts/components/notifications.js"></script>
 	<script src="/public/javascripts/components/profile.js"></script>
@@ -78,6 +78,8 @@
 	<script src="/public/javascripts/components/wall.js"></script>
 	<script src="/public/javascripts/components/group.js"></script>
 	<script src="/public/javascripts/components/event.js"></script>
+	<script src="/public/javascripts/components/messages.js"></script>
+	<script src="/public/javascripts/components/mail.js"></script>
 	<script src="/public/javascripts/components/post_list.js"></script>
 	<script src="/public/javascripts/components/post.js"></script>
 	<script src="/public/javascripts/app.js"></script>
